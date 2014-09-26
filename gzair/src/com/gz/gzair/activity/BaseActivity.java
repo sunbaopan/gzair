@@ -17,7 +17,7 @@ public class BaseActivity extends Activity {
     public int interval;
  
     @Override
-    protected void onCreate(Bundle savedInstanceState) {//开始时间
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         udpH=new UdpHelper();
         
