@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="80.0dip"
+        android:gravity="center_vertical"
+        android:paddingBottom="10.0dip"
+        android:background="@drawable/list_item_bg"
+        android:paddingTop="10.0dip" >
+
+        <ImageView
+            android:id="@id/device_icon"
+            android:layout_width="55.0dip"
+            android:layout_height="55.0dip"
+            android:layout_marginLeft="12.0dip"
+            android:src="@drawable/device_icon" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dip"
+            android:layout_weight="1.0"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@id/device_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_black"
+                android:textSize="16.0sp" />
+
+            <TextView
+                android:id="@id/qr_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5.0dip"
+                android:layout_marginTop="5.0dip"
+                android:textColor="@color/color_gray"
+                android:textSize="14.0sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@id/eair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.0"
+            android:gravity="center_vertical"
+            android:text="@string/air"
+            android:textColor="@color/color_gray"
+            android:textSize="14.0sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@id/device_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5.0dip"
+            android:layout_weight="0.0"
+            android:drawableRight="@drawable/right"
+            android:gravity="center_vertical"
+            android:textColor="@color/color_green"
+            android:textSize="14.0sp" />
+    </LinearLayout>
+
+</LinearLayout>

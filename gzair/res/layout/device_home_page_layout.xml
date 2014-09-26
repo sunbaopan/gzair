@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/eair_bg"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_standby"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@id/title_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10.0dip"
+            android:src="@drawable/logo4"
+            />
+
+        <TextView
+            android:id="@id/location_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10.0dip"
+            android:text="@string/get_weather"
+            android:textColor="#ffffffff"
+            android:textSize="14.0sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.0"
+        android:fadingEdge="none"
+        android:fillViewport="true"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@id/err_icon"
+                    android:layout_width="45.0dip"
+                    android:layout_height="45.0dip"
+                    android:layout_gravity="right"
+                    android:layout_margin="10.0dip"
+                    android:src="@drawable/warn_icon" />
+
+                <FrameLayout
+                    android:layout_width="230.0dip"
+                    android:layout_height="230.0dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5.0dip"
+                    android:background="@drawable/circle" >
+
+                    <View
+                        android:id="@id/run_progress"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/point"
+                        android:visibility="gone" />
+ 
+                    <LinearLayout
+                        android:id="@id/open_layout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+                        <TextView
+                            android:id="@id/eair_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/mode_night_icon"
+                            android:textColor="#ffffffff"
+                            android:textSize="50.0sp" />
+
+                        <TextView
+                            android:id="@id/eair_run_state"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="1.0dip"
+                            android:text="@string/mode_night"
+                            android:textColor="#ffffffff"
+                            android:textSize="16.0sp" />
+                        
+                          <TextView
+                            android:id="@id/pm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5.0dip"
+                            android:textColor="#ffffffff"
+                            android:textSize="14.0sp" />
+                    </LinearLayout>
+                    
+                </FrameLayout>
+            </FrameLayout>
+			
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="100dip"
+                android:gravity="center_vertical"
+                >
+                <TextView
+                    android:id="@id/flz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20.0dip"
+                    android:drawableTop="@drawable/flz_selector"
+                    android:gravity="center_horizontal"
+                    android:text="@string/flz"
+                    android:textColor="#ffffffff"
+                    android:textSize="14.0sp" />
+
+                <TextView
+                    android:id="@id/btn_kill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:drawableTop="@drawable/kill_selector"
+                    android:gravity="center_horizontal"
+                    android:text="@string/kill"
+                    android:textColor="#ffffffff"
+                    android:textSize="14.0sp" />
+
+                <TextView
+                    android:id="@id/hepa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20.0dip"
+                    android:drawableTop="@drawable/hepa_selector"
+                    android:gravity="center_horizontal"
+                    android:text="@string/hepa"
+                    android:textColor="#ffffffff"
+                    android:textSize="14.0sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="100dip"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@id/btn_silence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20.0dip"
+                    android:drawableTop="@drawable/silence_selector"
+                    android:gravity="center_horizontal"
+                    android:text="@string/handle"
+                    android:textColor="#ffffffff"
+                    android:textSize="14.0sp" />
+
+                <TextView
+                    android:id="@id/btn_auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:drawableTop="@drawable/auto_selector"
+                    android:gravity="center_horizontal"
+                    android:text="@string/auto"
+                    android:textColor="#ffffffff"
+                    android:textSize="14.0sp" />
+
+                <TextView
+                    android:id="@id/sleep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20.0dip"
+                    android:drawableTop="@drawable/sleep_selector"
+                    android:gravity="center_horizontal"
+                    android:text="@string/sleep"
+                    android:textColor="#ffffffff"
+                    android:textSize="14.0sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@id/bottom_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.0"
+        android:background="#ffffffff" >
+
+        <LinearLayout
+            android:id="@id/wind_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10.0dip"
+            android:gravity="center_vertical" >
+
+            <View
+                android:id="@id/wind_icon"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:background="@drawable/standby_fan" />
+
+            <TextView
+                android:id="@id/wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="风速0"
+                android:textColor="@color/color_standby"
+                android:textSize="16.0sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/standby_close_selector" />
+
+        <LinearLayout
+            android:id="@id/timer_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10.0dip"
+            android:gravity="center_vertical" >
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <View
+                    android:id="@id/timer_icon_bg"
+                    android:layout_width="50.0dip"
+                    android:layout_height="50.0dip"
+                    android:background="@drawable/standby_timer" />
+
+                <View
+                    android:id="@id/timer_icon"
+                    android:layout_width="50.0dip"
+                    android:layout_height="50.0dip"
+                    android:background="@drawable/standby_timer2" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@id/run_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0小时"
+                android:textColor="@color/color_standby"
+                android:textSize="16.0sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

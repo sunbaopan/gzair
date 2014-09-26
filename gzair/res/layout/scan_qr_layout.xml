@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <SurfaceView android:layout_gravity="center" android:id="@id/preview_view" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+
+    <com.tcl.eair.view.ViewfinderView
+        android:id="@id/viewfinder_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/scan_qr_bg" />
+
+    <Button android:textColor="#ffa6a6a6" android:layout_gravity="bottom|center" android:id="@id/btn_input" android:background="@drawable/btn_scan_selector" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="20.0dip" android:text="@string/click_input" />
+    <TextView android:textSize="16.0sp" android:textColor="#ffa6a6a6" android:layout_gravity="bottom|center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="100.0dip" android:text="@string/scan_qr_hint" />
+</FrameLayout>
