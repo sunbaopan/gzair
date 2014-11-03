@@ -5,7 +5,7 @@
     android:padding="10.0dip" >
 
     <LinearLayout
-        android:id="@id/config_layout"
+        android:id="@+id/config_layout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
@@ -28,7 +28,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@id/config_start_layout"
+        android:id="@+id/config_start_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30.0dip"
@@ -57,7 +57,7 @@
                 android:textSize="18.0sp" />
 
             <EditText
-                android:id="@id/ssid"
+                android:id="@+id/ssid"
                 android:layout_width="fill_parent"
                 android:layout_height="25.0dip"
                 android:layout_marginLeft="5.0dip"
@@ -84,7 +84,7 @@
                 android:textSize="18.0sp" />
 
             <EditText
-                android:id="@id/password"
+                android:id="@+id/password"
                 android:layout_width="fill_parent"
                 android:layout_height="25.0dip"
                 android:layout_marginLeft="5.0dip"
@@ -98,7 +98,7 @@
         </LinearLayout>
 
         <CheckBox
-            android:id="@id/pass_show"
+            android:id="@+id/pass_show"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -110,7 +110,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@id/btn_start"
+        android:id="@+id/btn_start"
         android:layout_width="fill_parent"
         android:layout_height="37.0dip"
         android:layout_gravity="bottom"

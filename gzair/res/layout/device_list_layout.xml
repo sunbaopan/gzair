@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <ListView
-        android:id="@id/deviceList"
+        android:id="@+id/deviceList"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="4" >
@@ -13,7 +13,7 @@
     </ListView>
 
     <LinearLayout
-        android:id="@id/add_device_layout"
+        android:id="@+id/add_device_layout"
         android:layout_width="fill_parent"
         android:layout_height="45.0dip"
         android:layout_weight="1"

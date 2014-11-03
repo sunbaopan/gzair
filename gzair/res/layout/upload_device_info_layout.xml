@@ -23,21 +23,27 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/qr_info"
+                android:text="@string/sernumber"
                 android:textColor="@color/color_gray"
                 android:textSize="16.0sp" />
 
             <EditText
-                android:id="@id/qr_info"
+                android:id="@+id/qr_info"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="5.0dip"
                 android:layout_weight="1.0"
                 android:background="@null"
                 android:gravity="center_vertical"
-                android:hint="@string/input_qr_info"
+                android:hint="@string/input_sernumber"
                 android:textColor="@color/color_black"
                 android:textSize="16.0sp" />
+            <Button
+                android:id="@+id/btn_qr"
+                android:layout_width="40.0dip"
+                android:layout_height="40.0dip"
+                android:layout_weight="0.0"
+                android:background="@drawable/btn_qr" />
         </LinearLayout>
 
         <View
@@ -61,7 +67,7 @@
                 android:textSize="16.0sp" />
 
            <EditText
-                android:id="@id/addPassword"
+                android:id="@+id/addPassword"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="5.0dip"
@@ -69,13 +75,13 @@
                 android:background="@null"
                 android:inputType="textPassword"
                 android:gravity="center_vertical"
-                android:hint="@string/input_qr_info"
+                android:hint="@string/input_sernumber"
                 android:textColor="@color/color_black"
                 android:textSize="16.0sp" />
         </LinearLayout>
     </LinearLayout>
     <CheckBox
-            android:id="@id/pass_show"
+            android:id="@+id/pass_show"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -86,7 +92,7 @@
             android:textSize="16.0sp" />
 
     <Button
-        android:id="@id/btn_upload"
+        android:id="@+id/btn_upload"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20.0dip"
@@ -96,7 +102,7 @@
         android:textSize="21.0sp" />
     
      <LinearLayout
-        android:id="@id/config_layout"
+        android:id="@+id/config_layout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"

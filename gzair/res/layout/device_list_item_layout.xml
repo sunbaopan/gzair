@@ -13,7 +13,7 @@
         android:paddingTop="10.0dip" >
 
         <ImageView
-            android:id="@id/device_icon"
+            android:id="@+id/device_icon"
             android:layout_width="55.0dip"
             android:layout_height="55.0dip"
             android:layout_marginLeft="12.0dip"
@@ -25,26 +25,24 @@
             android:layout_marginLeft="10.0dip"
             android:layout_weight="1.0"
             android:orientation="vertical" >
-
             <TextView
-                android:id="@id/device_name"
+                android:id="@+id/device_bm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/airdevice"
+                android:textColor="@color/color_black"
+                android:textSize="15.0sp" />
+            <TextView
+                android:id="@+id/device_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_black"
                 android:textSize="16.0sp" />
-
-            <TextView
-                android:id="@id/qr_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5.0dip"
-                android:layout_marginTop="5.0dip"
-                android:textColor="@color/color_gray"
-                android:textSize="14.0sp" />
+           
         </LinearLayout>
 
         <TextView
-            android:id="@id/eair"
+            android:id="@+id/eair"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.0"
@@ -52,10 +50,10 @@
             android:text="@string/air"
             android:textColor="@color/color_gray"
             android:textSize="14.0sp"
-            android:visibility="gone" />
+         />
 
         <TextView
-            android:id="@id/device_state"
+            android:id="@+id/device_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5.0dip"

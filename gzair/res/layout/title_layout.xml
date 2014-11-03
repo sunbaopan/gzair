@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@id/body_bg"
+    android:id="@+id/body_bg"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/gb_w" >
 
     <FrameLayout
-        android:id="@id/body"
+        android:id="@+id/body"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:paddingTop="45.0dip" />
 
     <RelativeLayout
-        android:id="@id/title_layout"
+        android:id="@+id/title_layout"
         android:layout_width="fill_parent"
         android:layout_height="45.0dip"
         android:background="#ffffffff" >
 
         <ImageButton
-            android:id="@id/btn_return"
+            android:id="@+id/btn_return"
             android:layout_width="50.0dip"
             android:layout_height="45.0dip"
             android:background="@null"
@@ -26,7 +26,7 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@id/title"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -39,7 +39,7 @@
             android:textSize="21.0sp" />
 
         <ImageButton
-            android:id="@id/btn_right"
+            android:id="@+id/btn_right"
             android:layout_width="50.0dip"
             android:layout_height="45.0dip"
             android:layout_alignParentRight="true"

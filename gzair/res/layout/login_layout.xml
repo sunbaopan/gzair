@@ -39,7 +39,7 @@
                     android:visibility="gone" />
 
                 <EditText
-                    android:id="@id/user_name"
+                    android:id="@+id/user_name"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_marginLeft="5.0dip"
@@ -74,7 +74,7 @@
                     android:visibility="gone" />
 
                 <EditText
-                    android:id="@id/password"
+                    android:id="@+id/password"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_marginLeft="5.0dip"
@@ -95,7 +95,7 @@
             android:layout_marginTop="15.0dip" >
 
             <CheckBox
-                android:id="@id/remeber_password"
+                android:id="@+id/remeber_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -105,7 +105,7 @@
                 android:textSize="14.0sp" />
 
             <TextView
-                android:id="@id/register"
+                android:id="@+id/register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -117,7 +117,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@id/btn_login"
+            android:id="@+id/btn_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15.0dip"
@@ -136,7 +136,7 @@
         android:visibility="gone" >
 
         <TextView
-            android:id="@id/into"
+            android:id="@+id/into"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:drawablePadding="10.0dip"

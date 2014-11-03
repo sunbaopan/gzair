@@ -33,7 +33,7 @@
                     android:textSize="16.0sp" />
 
                 <EditText
-                    android:id="@id/user_name"
+                    android:id="@+id/user_name"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_marginLeft="5.0dip"
@@ -51,7 +51,7 @@
                 android:background="#7b333333" />
 
             <LinearLayout
-                android:id="@id/device_lock_layout"
+                android:id="@+id/device_lock_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="50.0dip"
                 android:gravity="center_vertical"
@@ -67,7 +67,7 @@
                     android:textSize="16.0sp" />
 
                 <ImageView
-                    android:id="@id/lock"
+                    android:id="@+id/lock"
                     android:layout_width="30.0dip"
                     android:layout_height="30.0dip"
                     android:layout_marginRight="5.0dip"
@@ -98,7 +98,7 @@
                     android:textSize="16.0sp" />
 
                 <TextView
-                    android:id="@id/mac"
+                    android:id="@+id/mac"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_marginLeft="5.0dip"
@@ -124,12 +124,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5.0dip"
-                    android:text="@string/qr_info"
+                    android:text="@string/sernumber"
                     android:textColor="@color/color_gray"
                     android:textSize="16.0sp" />
 
                 <TextView
-                    android:id="@id/serial_number"
+                    android:id="@+id/serial_number"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_marginLeft="5.0dip"
@@ -143,7 +143,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@id/btn_save"
+            android:id="@+id/btn_save"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40.0dip"

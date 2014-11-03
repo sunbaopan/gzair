@@ -1,124 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (C) 2008 ZXing authors
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
 <resources>
-    <item type="id" name="gridview" />
-    <item type="id" name="webview" />
-    <item type="id" name="scrollview" />
-    <item type="id" name="auto_focus" />
-    <item type="id" name="decode" />
-    <item type="id" name="decode_failed" />
-    <item type="id" name="decode_succeeded" />
-    <item type="id" name="encode_failed" />
-    <item type="id" name="encode_succeeded" />
-    <item type="id" name="launch_product_query" />
-    <item type="id" name="quit" />
-    <item type="id" name="restart_preview" />
-    <item type="id" name="return_scan_result" />
-    <item type="id" name="search_book_contents_failed" />
-    <item type="id" name="search_book_contents_succeeded" />
-    <item type="id" name="wind_1">false</item>
-    <item type="id" name="wind_2">false</item>
-    <item type="id" name="wind_3">false</item>
-    <item type="id" name="wind_4">false</item>
-    <item type="id" name="wind_5">false</item>
-    <item type="id" name="time_0">false</item>
-    <item type="id" name="time_1">false</item>
-    <item type="id" name="time_2">false</item>
-    <item type="id" name="time_3">false</item>
-    <item type="id" name="time_4">false</item>
-    <item type="id" name="wind_bar">false</item>
-    <item type="id" name="time_bar">false</item>
-    <item type="id" name="alert_title">false</item>
-    <item type="id" name="btn_left">false</item>
-    <item type="id" name="timer_gallery">false</item>
-    <item type="id" name="btn_right">false</item>
-    <item type="id" name="config_layout">false</item>
-    <item type="id" name="config_start_layout">false</item>
-    <item type="id" name="ssid">false</item>
-    <item type="id" name="password">false</item>
-    <item type="id" name="pass_show">false</item>
-    <item type="id" name="btn_start">false</item>
-    <item type="id" name="eair_bg">false</item>
-    <item type="id" name="title_layout">false</item>
-    <item type="id" name="location_text">false</item>
-    <item type="id" name="err_icon">false</item>
-    <item type="id" name="run_progress">false</item>
-    <item type="id" name="open_layout">false</item>
-    <item type="id" name="eair_value">false</item>
-    <item type="id" name="eair_run_state">false</item>
-    <item type="id" name="weather_info_layout">false</item>
-    <item type="id" name="location_pm">false</item>
-    <item type="id" name="pm">false</item>
-    <item type="id" name="filter_info_layout">false</item>
-    <item type="id" name="filter_icon">false</item>
-    <item type="id" name="btn_silence">false</item>
-    <item type="id" name="btn_auto">false</item>
-    <item type="id" name="btn_kill">false</item>
-    <item type="id" name="bottom_bar">false</item>
-    <item type="id" name="wind_layout">false</item>
-    <item type="id" name="wind_icon">false</item>
-    <item type="id" name="wind">false</item>
-    <item type="id" name="btn_close">false</item>
-    <item type="id" name="timer_layout">false</item>
-    <item type="id" name="timer_icon_bg">false</item>
-    <item type="id" name="timer_icon">false</item>
-    <item type="id" name="run_time">false</item>
-    <item type="id" name="device_icon">false</item>
-    <item type="id" name="device_name">false</item>
-    <item type="id" name="qr_message">false</item>
-    <item type="id" name="eair">false</item>
-    <item type="id" name="device_state">false</item>
-    <item type="id" name="pull_refresh_scrollview">false</item>
-    <item type="id" name="device_list_view">false</item>
-    <item type="id" name="add_device_layout">false</item>
-    <item type="id" name="user_name">false</item>
-    <item type="id" name="device_lock_layout">false</item>
-    <item type="id" name="lock">false</item>
-    <item type="id" name="mac">false</item>
-    <item type="id" name="serial_number">false</item>
-    <item type="id" name="btn_save">false</item>
-    <item type="id" name="err_motor">false</item>
-    <item type="id" name="err_air_sensor">false</item>
-    <item type="id" name="call_server">false</item>
-    <item type="id" name="btn_return">false</item>
-    <item type="id" name="delay_time">false</item>
-    <item type="id" name="net">false</item>
-    <item type="id" name="server_tel">false</item>
-    <item type="id" name="text">false</item>
-    <item type="id" name="btn_open">false</item>
-    <item type="id" name="pm_value">false</item>
-    <item type="id" name="remeber_password">false</item>
-    <item type="id" name="register">false</item>
-    <item type="id" name="btn_login">false</item>
-    <item type="id" name="into">false</item>
-    <item type="id" name="progressBar1">false</item>
-    <item type="id" name="message">false</item>
-    <item type="id" name="notify_icon">false</item>
-    <item type="id" name="notify_text">false</item>
-    <item type="id" name="notify_pb">false</item>
-    <item type="id" name="fl_inner">false</item>
-    <item type="id" name="pull_to_refresh_image">false</item>
-    <item type="id" name="pull_to_refresh_progress">false</item>
-    <item type="id" name="pull_to_refresh_text">false</item>
-    <item type="id" name="pull_to_refresh_sub_text">false</item>
-    <item type="id" name="confim_password">false</item>
-    <item type="id" name="phone_num">false</item>
-    <item type="id" name="email">false</item>
-    <item type="id" name="user_agreement_box">false</item>
-    <item type="id" name="user_agreement">false</item>
-    <item type="id" name="preview_view">false</item>
-    <item type="id" name="viewfinder_view">false</item>
-    <item type="id" name="btn_input">false</item>
-    <item type="id" name="body_bg">false</item>
-    <item type="id" name="body">false</item>
-    <item type="id" name="title">false</item>
-    <item type="id" name="qr_info">false</item>
-    <item type="id" name="btn_qr">false</item>
-    <item type="id" name="btn_upload">false</item>
-    <item type="id" name="web">false</item>
-    <item type="id" name="flz">false</item>
-    <item type="id" name="sleep">false</item>
-    <item type="id" name="hepa">false</item>
-    <item type="id" name="deviceList">false</item>
-    <item type="id" name="btn_Register">false</item>
-    <item type="id" name="addPassword">false</item>
+  <item type="id" name="decode"/>
+  <item type="id" name="decode_failed"/>
+  <item type="id" name="decode_succeeded"/>
+  <item type="id" name="launch_product_query"/>
+  <item type="id" name="quit"/>
+  <item type="id" name="restart_preview"/>
+  <item type="id" name="return_scan_result"/>
 </resources>

@@ -26,7 +26,7 @@
                 android:textSize="16.0sp" />
 
             <EditText
-                android:id="@id/user_name"
+                android:id="@+id/user_name"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="5.0dip"
@@ -60,7 +60,7 @@
                 android:textSize="16.0sp" />
 
             <EditText
-                android:id="@id/password"
+                android:id="@+id/password"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="5.0dip"
@@ -94,7 +94,7 @@
                 android:textSize="16.0sp" />
 
             <EditText
-                android:id="@id/confim_password"
+                android:id="@+id/confim_password"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="5.0dip"
@@ -131,7 +131,7 @@
                 android:textSize="16.0sp" />
 
             <EditText
-                android:id="@id/phone_num"
+                android:id="@+id/phone_num"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="5.0dip"
@@ -165,7 +165,7 @@
                 android:textSize="16.0sp" />
 
             <EditText
-                android:id="@id/email"
+                android:id="@+id/email"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="5.0dip"
@@ -188,13 +188,13 @@
         android:orientation="horizontal" >
 
         <CheckBox
-            android:id="@id/user_agreement_box"
+            android:id="@+id/user_agreement_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/check_box" />
 
         <TextView
-            android:id="@id/user_agreement"
+            android:id="@+id/user_agreement"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/user_agreement"
@@ -203,7 +203,7 @@
     </LinearLayout>
  -->
     <Button
-        android:id="@id/btn_Register"
+        android:id="@+id/btn_Register"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15.0dip"
