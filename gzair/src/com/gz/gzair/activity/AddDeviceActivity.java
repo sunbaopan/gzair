@@ -1,5 +1,8 @@
+
 package com.gz.gzair.activity;
+
 import java.util.List;
+import com.google.zxing.client.android.CaptureActivity;
 import com.gz.gzair.Constant;
 import com.gz.gzair.EairApplaction;
 import com.gz.gzair.R;
@@ -22,6 +25,7 @@ import android.provider.Settings;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.Selection;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -41,6 +45,8 @@ public class AddDeviceActivity extends BaseActivity {
     private LinearLayout config_layout;
     private SharedPreferences storeSP;
     private String userId;
+    
+    private Button  btn_qr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +61,38 @@ public class AddDeviceActivity extends BaseActivity {
         pass_showC = (CheckBox) this.findViewById(R.id.pass_show);
         btn_qrB = (Button) this.findViewById(R.id.btn_upload);
         btn_qrB.setOnClickListener(new AddDeviceListener(userId));
+        btn_qr=(Button) this.findViewById(R.id.btn_qr);
         pass_showC.setOnCheckedChangeListener(new PassShowCheckedChangeListener());
         config_layout = (LinearLayout) this.findViewById(R.id.config_layout);
         storeSP = this.getSharedPreferences(Constant.STOREDB, 0);
+        
+        btn_qr.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent openCameraIntent = new Intent(AddDeviceActivity.this,
+                        CaptureActivity.class);
+                startActivityForResult(openCameraIntent, 0);
+            }
+        });
+
     }
+    
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+         
+        if (resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            String scanResult = bundle.getString("result");
+            //将获取的机身序列号放入输入框内
+            qr_infoE.setText(scanResult);
+            //resultTextView.setText(scanResult);
+        }
+    }
+
 
     private class PassShowCheckedChangeListener implements CheckBox.OnCheckedChangeListener {
 
@@ -98,15 +132,16 @@ public class AddDeviceActivity extends BaseActivity {
                         Toast.LENGTH_LONG).show();
                 return;
             }
-            //第一次将正常的可用的wifi的ssid保存下来
+            String wlsn = qr_infoE.getText().toString();
+            // 第一次将正常的可用的wifi的ssid保存下来
             WifiInfo wifiInfo = mWifiManager.getWifiInfor();
             String currentSsid = wifiInfo.getSSID().replace("\"", "");
-            if(currentSsid!=null&&(!currentSsid.contains("YT@WL"))){
+            if (currentSsid != null && (!currentSsid.contains("YT@WL"))) {
                 Editor edit = storeSP.edit();
                 edit.putString(Constant.WIFIACCOUNT, currentSsid);
                 edit.commit();
             }
-            String wlsn = qr_infoE.getText().toString();
+           
             String ssid = "YT@WL" + wlsn;// 获取用户添加的该设备的热点
             List<ScanResult> wifiList = mWifiManager.startScan();
             int pos = -1;
@@ -123,6 +158,21 @@ public class AddDeviceActivity extends BaseActivity {
                         Toast.LENGTH_LONG).show();
                 return;
             }
+            //配置之前需要查找一下对应的wlsn和userid是否需要保存或者修改
+            WebServiceUtil  wsu=new WebServiceUtil();
+            String rep=null;
+            for (int i = 0; i < 10; i++) {
+                rep = wsu.addISIP(wlsn, userId);
+                if (rep != null) {
+                    break;
+                }
+                try {
+                    Thread.sleep(Constant.LSLEEPTIME);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            
             String password = addPasswordE.getText().toString();
             Thread configThread = new Thread(new ConfigThread(userId, ssid, password));
             config_layout.setVisibility(View.VISIBLE);
@@ -394,11 +444,11 @@ public class AddDeviceActivity extends BaseActivity {
                     config_layout.setVisibility(View.INVISIBLE);
                     break;
                 case 5:
-                    Object o=msg.obj;
-                    String ssid=o.toString();
-                    String str=AddDeviceActivity.this.getResources().getString(R.string.handlelj);
-                    str=str.replace("%1$", ssid);
-                    Toast.makeText(AddDeviceActivity.this, str,Toast.LENGTH_SHORT).show();
+                    Object o = msg.obj;
+                    String ssid = o.toString();
+                    String str = AddDeviceActivity.this.getResources().getString(R.string.handlelj);
+                    str = str.replace("%1$", ssid);
+                    Toast.makeText(AddDeviceActivity.this, str, Toast.LENGTH_SHORT).show();
                     config_layout.setVisibility(View.INVISIBLE);
                     new skipThread().start();
                     break;
@@ -407,23 +457,31 @@ public class AddDeviceActivity extends BaseActivity {
         }
 
     };
-    
-    public  class skipThread extends Thread{
+
+    public class skipThread extends Thread {
 
         @Override
         public void run() {
-            //暂停5s
+            // 暂停5s
             try {
                 Thread.sleep(5000);
-                Intent intent =  new Intent(Settings.ACTION_WIFI_SETTINGS);  
+                Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
                 startActivity(intent);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-         
+
         }
-        
+
+    }
+    
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK) { // 点击返回就退出应用
+            EairApplaction.getInstance().exit();  
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

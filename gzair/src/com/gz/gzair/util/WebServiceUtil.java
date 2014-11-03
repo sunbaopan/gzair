@@ -24,7 +24,6 @@ public class WebServiceUtil {
     private static String SOAP_ACTION = NAMESPACE + METHOD_NAME;
     
     
-    
     private static final String WIP_METHOD_NAME = "getWIP";
 
     private static String WIP_SOAP_ACTION = NAMESPACE + WIP_METHOD_NAME;
@@ -46,6 +45,39 @@ public class WebServiceUtil {
     private static final String NET_METHOD_NAME = "areaNetWork";
 
     private static String NET__SOAP_ACTION = NAMESPACE + NET_METHOD_NAME;
+    
+    
+    private static  final String ADD_IP_NAME="addISIP";
+    
+    private static String ADDIP__SOAP_ACTION=NAMESPACE + ADD_IP_NAME;
+    
+    
+    /***
+     * 在添加设备的时候根据设备序列号和userid来判断是否需要添加
+     * @param wlsn
+     * @param userid
+     * @return
+     */
+    public String addISIP(String wlsn,String userid) {
+        String ss = null;
+        try {
+            SoapObject rpc = new SoapObject(NAMESPACE, ADD_IP_NAME);
+            rpc.addProperty("wlsn", wlsn);
+            rpc.addProperty("userid", userid);
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                    SoapEnvelope.VER10);
+            envelope.bodyOut = rpc;
+            // envelope.dotNet = true;
+            envelope.setOutputSoapObject(rpc);
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.debug = true;
+            ht.call(ADDIP__SOAP_ACTION, envelope);
+            ss = envelope.getResponse().toString();
+        } catch (Exception e) {
+            return null;
+        }
+        return ss;
+    }
     
     
     

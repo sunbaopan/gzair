@@ -30,20 +30,18 @@ import com.gz.gzair.view.BLWindAlert;
 @SuppressLint("HandlerLeak")
 public class DeviceHomePageActivity extends BaseActivity
 {
-    private TextView mAutoButton;
-    private LinearLayout mBackGround;
-    private Button mCloseButton;
-    private TextView mEairRunStateText;
-    private TextView mEairValueText;
-    private ImageView mErrorIconView;
-    private boolean mInRefreshIng = false;
-    private TextView mKillButton;
-    private TextView mLocationWeatherText;
-    private LinearLayout mOpenLayout;
-    private Animation mRotateAnimation;
+    private TextView mAutoButton;//自动按钮
+    private LinearLayout mBackGround;//背景色
+    private Button mCloseButton;//关闭按钮
+    private TextView mEairRunStateText;//室内空气质量
+    private TextView mEairValueText;//好  良  优
+    private ImageView mErrorIconView;//警告错误图标   比如过滤网过去啥的
+    private TextView mKillButton;//杀菌按钮
+    private TextView mLocationWeatherText;//显示aqi
+    private Animation mRotateAnimation;//中间36-旋转动画
     private View mRunProgress;
     private TextView mRunTimeText;
-    private TextView mSilenceButton;
+    private TextView mhandButton;//手动
     private View mTimeIconBgView;
     private View mTimeIconView;
     private Animation mTimerAnimation;
@@ -104,12 +102,11 @@ public class DeviceHomePageActivity extends BaseActivity
         this.mTimeIconView = findViewById(R.id.timer_icon);
         this.mWindLayout = ((LinearLayout) findViewById(R.id.wind_layout));
         this.mTimerLayout = ((LinearLayout) findViewById(R.id.timer_layout));
-        this.mOpenLayout = ((LinearLayout) findViewById(R.id.open_layout));
         this.mBackGround = ((LinearLayout) findViewById(R.id.eair_bg));
         this.flz = (TextView) findViewById(R.id.flz);
         this.hepaText = (TextView) findViewById(R.id.hepa);
         this.sleep = (TextView) findViewById(R.id.sleep);
-        this.mSilenceButton = ((TextView) findViewById(R.id.btn_hand));
+        this.mhandButton = ((TextView) findViewById(R.id.btn_hand));
         this.mAutoButton = ((TextView) findViewById(R.id.btn_auto));
         this.mKillButton = ((TextView) findViewById(R.id.btn_kill));
         this.mpmText=(TextView) findViewById(R.id.pm);
@@ -118,8 +115,7 @@ public class DeviceHomePageActivity extends BaseActivity
     private void initEairView()
     {
 
-        TextView localTextView2 = this.mRunTimeText;
-        localTextView2.setText(getString(R.string.format_time, time));
+        mRunTimeText.setText(getString(R.string.format_time, time));
         this.mEairRunStateText.setText(R.string.room_air);
         this.mRunProgress.setVisibility(0);
         this.mEairValueText.setBackgroundDrawable(null);
@@ -210,34 +206,19 @@ public class DeviceHomePageActivity extends BaseActivity
             this.mErrorIconView.setVisibility(View.INVISIBLE);
             // 风速档位
             if (fw == 1) {
-                TextView textView1 = this.mWindText;
-                Object[] object1 = new Object[1];
-                object1[0] = Integer.valueOf(1);
-                textView1.setText(getString(R.string.format_wind, object1));
+                mWindText.setText(getString(R.string.format_wind, 1));
                 this.mWindAnimation.setDuration(25000L);
             } else if (fw == 2) {
-                TextView textView2 = this.mWindText;
-                Object[] object2 = new Object[1];
-                object2[0] = Integer.valueOf(2);
-                textView2.setText(getString(R.string.format_wind, object2));
+                mWindText.setText(getString(R.string.format_wind, 2));
                 this.mWindAnimation.setDuration(20000L);
             } else if (fw == 3) {
-                TextView textView3 = this.mWindText;
-                Object[] object3 = new Object[1];
-                object3[0] = Integer.valueOf(3);
-                textView3.setText(getString(R.string.format_wind, object3));
+                mWindText.setText(getString(R.string.format_wind, 3));
                 this.mWindAnimation.setDuration(15000L);
             } else if (fw == 4) {
-                TextView textView4 = this.mWindText;
-                Object[] object4 = new Object[1];
-                object4[0] = Integer.valueOf(4);
-                textView4.setText(getString(R.string.format_wind, object4));
+                mWindText.setText(getString(R.string.format_wind, 4));
                 this.mWindAnimation.setDuration(10000L);
             }else if (fw == 5) {
-                TextView textView5= this.mWindText;
-                Object[] object5 = new Object[1];
-                object5[0] = Integer.valueOf(5);
-                textView5.setText(getString(R.string.format_wind, object5));
+                mWindText.setText(getString(R.string.format_wind, 5));
                 this.mWindAnimation.setDuration(10000L);
             }
             
@@ -247,19 +228,19 @@ public class DeviceHomePageActivity extends BaseActivity
         }
 
         if (mode == 0) {
-            mSilenceButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_s, 0, 0);
+            mhandButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_s, 0, 0);
             mAutoButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.auto2_n, 0, 0);
             sleep.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.sleep_n, 0, 0);
         }
         if (mode == 1) {
             mAutoButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.auto2_s, 0, 0);
-            mSilenceButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_n, 0, 0);
+            mhandButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_n, 0, 0);
             sleep.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.sleep_n, 0, 0);
         }
 
         if (mode == 2) {
             sleep.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.sleep_s, 0, 0);
-            mSilenceButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_n, 0, 0);
+            mhandButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_n, 0, 0);
             mAutoButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.auto2_n, 0, 0);
         }
         if (uv == 0) {
@@ -283,10 +264,9 @@ public class DeviceHomePageActivity extends BaseActivity
      */
     private void initWeatherView()
     {
-        String weather = EairApplaction.todayWeather;
+        //String weather = EairApplaction.todayWeather;
         String aqi = EairApplaction.aqi;
-        TextView localTextView1 = this.mLocationWeatherText;
-        Object[] object = new Object[3];
+        /*Object[] object = new Object[3];
         object[0] = aqi;
         if (weather != null&&weather.contains("~")) {
             Object[] objectTem = weather.split("~");
@@ -295,8 +275,8 @@ public class DeviceHomePageActivity extends BaseActivity
         } else {
             object[1] = 0;
             object[2] = 1;
-        }
-        localTextView1.setText(getString(R.string.format_location_weather, object));
+        }*/
+        mLocationWeatherText.setText(getString(R.string.format_location_weather, aqi));
     }
 
     /***
@@ -363,7 +343,7 @@ public class DeviceHomePageActivity extends BaseActivity
             }
         });
         // 手动
-        this.mSilenceButton.setOnClickListener(new View.OnClickListener() {
+        this.mhandButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -388,7 +368,7 @@ public class DeviceHomePageActivity extends BaseActivity
                     openTips();
                 } else {
                     mode=0;
-                    mSilenceButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_s, 0,
+                    mhandButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_s, 0,
                             0);
                     mAutoButton
                             .setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.auto2_n, 0, 0);
@@ -445,7 +425,7 @@ public class DeviceHomePageActivity extends BaseActivity
                     windEd.commit();
                     TextView localTextView1 = DeviceHomePageActivity.this.mWindText;
                     localTextView1.setText(getString(R.string.format_wind, fw));
-                    mSilenceButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_n, 0,
+                    mhandButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_n, 0,
                             0);
                     mAutoButton
                             .setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.auto2_s, 0, 0);
@@ -602,7 +582,7 @@ public class DeviceHomePageActivity extends BaseActivity
                     fw = 1;
                     TextView localTextView1 = DeviceHomePageActivity.this.mWindText;
                     localTextView1.setText(getString(R.string.format_wind, fw));
-                    mSilenceButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_n, 0,
+                    mhandButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_n, 0,
                             0);
                     mAutoButton
                             .setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.auto2_n, 0, 0);
@@ -681,7 +661,7 @@ public class DeviceHomePageActivity extends BaseActivity
                     TextView localTextView1 = DeviceHomePageActivity.this.mWindText;
                     localTextView1.setText(getString(R.string.format_wind, fw));
                     // 设置风速变成手动
-                    mSilenceButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_s, 0,
+                    mhandButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_s, 0,
                             0);
                     mAutoButton
                             .setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.auto2_n, 0, 0);
@@ -724,7 +704,7 @@ public class DeviceHomePageActivity extends BaseActivity
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if (keyCode == KeyEvent.KEYCODE_BACK) { // 点击返回就退出应用
-              EairApplaction.getInstance().exit();  
+             this.finish();
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -734,7 +714,6 @@ public class DeviceHomePageActivity extends BaseActivity
         super.onPause();
         this.mRunProgress.setVisibility(4);
         this.mRunProgress.clearAnimation();
-        this.mInRefreshIng = false;
         if (this.timer != null)
         {
             this.timer.cancel();
@@ -749,7 +728,6 @@ public class DeviceHomePageActivity extends BaseActivity
         initEairView();
         this.mWindIconView.startAnimation(this.mWindAnimation);
         this.mRunProgress.startAnimation(this.mRotateAnimation);
-        this.mInRefreshIng = true;
         if (this.timer == null) {
             this.timer = new Time();
             timer.test();// //启动定时器任务

@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.gz.gzair.util.AQIUtil;
+import com.gz.gzair.util.TempUtil;
 import com.gz.gzair.util.UdpHelper;
 import com.gz.gzair.util.Util;
 import com.gz.gzair.util.WeatherUtil;
@@ -30,7 +31,7 @@ public class EairApplaction extends Application
     
     public static boolean status;
 
-    public static String todayWeather;
+    //public static String todayWeather;
 
     public static String aqi;
 
@@ -404,14 +405,11 @@ public class EairApplaction extends Application
                 }
                 AQIUtil au = new AQIUtil();
                 String pycity = EairApplaction.cityMap.get(city);
-                String aqiUrl = "http://www.cnpm25.cn/city/" + pycity + ".html";
+                String aqiUrl = "http://www.tianqi.com/air/" + pycity + ".html";
                 aqi = au.getAQI(aqiUrl);
-                WeatherUtil wu = new WeatherUtil(context);
-                todayWeather = wu.getWeather(city);
-                if (todayWeather != null) {
-                    todayWeather = todayWeather.replace("/", "~");
-                }
-               
+                //String tempUrl="http://"+pycity+".tianqi.com/";
+                //WeatherUtil wu = new WeatherUtil(context);
+                //todayWeather = wu.getWeather(city);
             }
         }
         

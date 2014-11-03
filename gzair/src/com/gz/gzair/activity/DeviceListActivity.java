@@ -22,19 +22,24 @@ import com.gz.gzair.Constant;
 import com.gz.gzair.EairApplaction;
 import com.gz.gzair.R;
 import com.gz.gzair.adapter.DeviceAdapter;
+import com.gz.gzair.domain.DeviceDomain;
 import com.gz.gzair.util.UdpHelper;
+import com.gz.gzair.util.WebServiceUtil;
 /****
  * 获取设备的列表的
  * @author sbp
  *
  */
 public class DeviceListActivity extends BaseActivity {
-    private List<String> lists=new ArrayList<String>();
+    private List<DeviceDomain> lists=new ArrayList<DeviceDomain>();
     private SharedPreferences storeSP;
+    public static String g_userId = null;   
+    public static DeviceListActivity devicelistinstance = null;
     private  LinearLayout add_device_layout;
     private String phoneMac;
     private String sb;//改用户下的所有设备列表
     private String userId;
+    private  int  count=0;//没有注册服务器的次数
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EairApplaction.getInstance().addActivity(this);
@@ -43,25 +48,41 @@ public class DeviceListActivity extends BaseActivity {
         Bundle bundle=this.getIntent().getBundleExtra("sbbundle");
         sb=bundle.getString("sb");
         userId=bundle.getString("userId");
+        g_userId = userId;
+        devicelistinstance = this;
         phoneMac=storeSP.getString(Constant.PHONEMAC, "");
-        if(!"0".equals(sb)){
-            String[] sbs=sb.split("&");
-            for(String mac:sbs){
-                if(mac.contains(":")){
-                    lists.add(mac.split(":")[0]);
-                }else{
-                    lists.add(mac);
+        if (sb == null) {
+            WebServiceUtil wsu = new WebServiceUtil();
+            sb = wsu.querySbByUserId(userId);
+            if(sb==null){
+                try {
+                    Thread.sleep(Constant.SLEEPTIME);
+                    sb = wsu.querySbByUserId(userId);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+            }
+        }
+        if (!"0".equals(sb)&&sb!=null) {
+            String[] sbs = sb.split("&");
+            for (String str : sbs) {
+                DeviceDomain domian = new DeviceDomain();
+                String newStr[] = str.split(":");
+                domian.setMac(newStr[0]);
+                domian.setPoweron(newStr[1]);
+                domian.setAir(newStr[2]);
+                domian.setBm(newStr[3]);
+                lists.add(domian);
             }
         }
         ListView listView=(ListView) this.findViewById(R.id.deviceList);
         add_device_layout=(LinearLayout) this.findViewById(R.id.add_device_layout);
-        listView.setAdapter(new DeviceAdapter(lists,this));
+        listView.setAdapter(new DeviceAdapter(lists,this,userId));
         //点击单个里面的事件
         listView.setOnItemClickListener(new OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int pos, long arg3) {
-                String mac=lists.get(pos);
+                String mac=lists.get(pos).getMac();
                 //这里可以加一个提示东东
                 Thread tt=new Thread(new StartThread(mac));
                 tt.start();
@@ -125,9 +146,16 @@ public class DeviceListActivity extends BaseActivity {
              UdpHelper.result=null;
              handle.sendMessage(msg);
          }else if("NotfindSbAddress".equals(UdpHelper.result)){
-             msg.what=2;
-             UdpHelper.result=null;
-             handle.sendMessage(msg);
+             count+=1;
+             if(count>=3){//估计是在添加设备的时候密码错误
+                 msg.what=3;
+                 UdpHelper.result=null;
+                 handle.sendMessage(msg);
+             }else{
+                 msg.what=2;
+                 UdpHelper.result=null;
+                 handle.sendMessage(msg);
+             }
          }
          else{//返回的信息
              String repMessage=UdpHelper.result;
@@ -171,7 +199,7 @@ public class DeviceListActivity extends BaseActivity {
                bundle.putString("sb", sb);
                bundle.putString("userId", userId);
                intent.putExtras(bundle);
-               DeviceListActivity.this.finish();
+               //DeviceListActivity.this.finish();
                DeviceListActivity.this.startActivity(intent);
            }else if(msg.what==1){//设备没有开启了
                Intent intent=new Intent(DeviceListActivity.this,OpenActivity.class);
@@ -180,12 +208,15 @@ public class DeviceListActivity extends BaseActivity {
                bundle.putString("sb", sb);
                bundle.putString("userId", userId);
                intent.putExtras(bundle);
-               DeviceListActivity.this.finish();
+               //DeviceListActivity.this.finish();
                DeviceListActivity.this.startActivity(intent);
            }else if(msg.what==-1){
                loadTipss();
            }else if(msg.what==2){
                Toast.makeText(DeviceListActivity.this, DeviceListActivity.this.getResources().getString(R.string.notsb1),
+                       Toast.LENGTH_LONG).show();
+           }else if(msg.what==3){
+               Toast.makeText(DeviceListActivity.this, DeviceListActivity.this.getResources().getString(R.string.notsb2),
                        Toast.LENGTH_LONG).show();
            }
             super.handleMessage(msg);

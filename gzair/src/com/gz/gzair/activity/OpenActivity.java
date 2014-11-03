@@ -36,13 +36,13 @@ public class OpenActivity extends BaseActivity implements OnClickListener {
         wlsn=bundle.getString("wlsn");
         sb=bundle.getString("sb");
         userId=bundle.getString("userId");
-        TextView location_text = (TextView) this.findViewById(R.id.location_text);
+        //TextView location_text = (TextView) this.findViewById(R.id.location_text);
         location_pm = (TextView) this.findViewById(R.id.location_pm);
         pm = (TextView) this.findViewById(R.id.pm);
         pm.setText(this.getResources().getString(R.string.aqi));
         btn_open.setOnClickListener(this);
         if (EairApplaction.status) {
-            location_text.setText(EairApplaction.todayWeather);
+            //location_text.setText(EairApplaction.todayWeather);
             location_pm.setText(EairApplaction.aqi);
         }
     }

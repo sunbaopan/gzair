@@ -25,6 +25,10 @@ public class UserWebServiceUtil {
 
     private static String REG_SOAP_ACTION = NAMESPACE + REG_METHOD_NAME;
     
+    private static String UPD_METHOD_NAME="updBm";
+    
+    private static String UPD_SOAP_ACTION= NAMESPACE + UPD_METHOD_NAME;
+    
     public String updUserId(String userId,String mess){
         String ss = null;
         try {
@@ -74,6 +78,36 @@ public class UserWebServiceUtil {
        }
        return ss;
    }
+   
+   
+   /****
+    * ÐÞ¸ÄÐÅÏ¢
+    * 
+    * @param city
+    * @return
+    */
+   public String updBM(String  wlsn, String bm,String userid) {
+
+       String ss = null;
+       try {
+           SoapObject rpc = new SoapObject(NAMESPACE, UPD_METHOD_NAME);
+           rpc.addProperty("wlsn", wlsn);
+           rpc.addProperty("bm", bm);
+           rpc.addProperty("userid", userid);
+           SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                   SoapEnvelope.VER10);
+           envelope.bodyOut = rpc;
+           envelope.setOutputSoapObject(rpc);
+           HttpTransportSE ht = new HttpTransportSE(URL);
+           ht.debug = true;
+           ht.call(UPD_SOAP_ACTION, envelope);
+           ss = envelope.getResponse().toString();
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+       return ss;
+   }
+
    
 
 
