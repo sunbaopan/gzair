@@ -109,7 +109,7 @@ public class DeviceHomePageActivity extends BaseActivity
         this.flz = (TextView) findViewById(R.id.flz);
         this.hepaText = (TextView) findViewById(R.id.hepa);
         this.sleep = (TextView) findViewById(R.id.sleep);
-        this.mSilenceButton = ((TextView) findViewById(R.id.btn_silence));
+        this.mSilenceButton = ((TextView) findViewById(R.id.btn_hand));
         this.mAutoButton = ((TextView) findViewById(R.id.btn_auto));
         this.mKillButton = ((TextView) findViewById(R.id.btn_kill));
         this.mpmText=(TextView) findViewById(R.id.pm);
