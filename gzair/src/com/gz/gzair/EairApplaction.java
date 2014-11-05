@@ -36,6 +36,16 @@ public class EairApplaction extends Application
     public static String aqi;
 
     public static String city;
+    
+    private boolean isDownload;
+    
+    public boolean isDownload() {
+        return isDownload;
+    }
+
+    public void setDownload(boolean isDownload) {
+        this.isDownload = isDownload;
+    }
 
     
     public EairApplaction() {    
@@ -70,6 +80,7 @@ public class EairApplaction extends Application
     public void onCreate() {
         // TODO Auto-generated method stub
         super.onCreate();
+        isDownload = false;
         cityMap.put("北京", "beijing");
         cityMap.put("上海", "shanghai");
         cityMap.put("天津", "tianjin");

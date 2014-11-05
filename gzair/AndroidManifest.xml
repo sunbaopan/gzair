@@ -119,6 +119,7 @@
         </activity>
         <activity android:name="com.google.zxing.client.android.PreferencesActivity" >
         </activity>
+        <service android:name=".activity.DownloadService"></service>
     </application>
 
 </manifest>
