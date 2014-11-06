@@ -89,6 +89,7 @@ public class LoadActivity extends BaseActivity  {
         } catch (NameNotFoundException e) {
             e.printStackTrace();
         }
+        this.coums();
     }
     
     
