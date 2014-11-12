@@ -85,6 +85,7 @@ public class LoadActivity extends BaseActivity  {
                 String mess[] = repMessage.split("&");
                 apkUrl=mess[1];
                 showNoticeDialog();
+                return;
             }
         } catch (NameNotFoundException e) {
             e.printStackTrace();
