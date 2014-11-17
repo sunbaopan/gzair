@@ -2,10 +2,7 @@
 package com.gz.gzair.activity;
 
 import java.util.List;
-import android.content.DialogInterface.OnClickListener;  
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,7 +20,6 @@ import com.gz.gzair.Constant;
 import com.gz.gzair.EairApplaction;
 import com.gz.gzair.R;
 import com.gz.gzair.activity.DownloadService.DownloadBinder;
-import com.gz.gzair.db.DBManager;
 import com.gz.gzair.util.Util;
 import com.gz.gzair.util.WebServiceUtil;
 public class LoadActivity extends BaseActivity  {
@@ -31,9 +27,7 @@ public class LoadActivity extends BaseActivity  {
     private SharedPreferences storeSP;
 
     private String mac = "";
-
-    private List<String> deviceList;
-    
+ 
     private EairApplaction app;
     
     private boolean isDestroy = true;
@@ -111,7 +105,6 @@ public class LoadActivity extends BaseActivity  {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO Auto-generated method stub
                     coums();
             }
         });
@@ -139,23 +132,7 @@ public class LoadActivity extends BaseActivity  {
         }
     }
 
-    /***
-     * 处理下面是怎么跳转
-     */
-    private void pdhandle() {
-        // 获取手机里面存储的设备
-        DBManager db = new DBManager(LoadActivity.this);
-        deviceList = db.query();
-        if (deviceList == null || deviceList.size() == 0) {// 没有设备,需要配置设备
-            Intent intent = new Intent(this, ConfigActivity.class);
-            this.finish();
-            this.startActivity(intent);
-        } else {// 有设备
-            Intent intent = new Intent(this, DeviceListActivity.class);
-            this.finish();
-            this.startActivity(intent);
-        }
-    }
+   
 
     private class TimeThread implements Runnable {
         @Override
@@ -175,13 +152,11 @@ public class LoadActivity extends BaseActivity  {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            // TODO Auto-generated method stub
             isBinded = false;
         }
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            // TODO Auto-generated method stub
             binder = (DownloadBinder) service;
             System.out.println("服务启动!!!");
             // 开始下载
@@ -193,7 +168,6 @@ public class LoadActivity extends BaseActivity  {
 
     @Override
     protected void onResume() {
-        // TODO Auto-generated method stub
         super.onResume();
 
         System.out.println(" notification  onresume");
@@ -201,7 +175,6 @@ public class LoadActivity extends BaseActivity  {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        // TODO Auto-generated method stub
         super.onNewIntent(intent);
         if (isDestroy && app.isDownload()) {
             Intent it = new Intent(this, DownloadService.class);
@@ -213,21 +186,18 @@ public class LoadActivity extends BaseActivity  {
 
     @Override
     protected void onStart() {
-        // TODO Auto-generated method stub
         super.onStart();
 
     }
 
     @Override
     protected void onPause() {
-        // TODO Auto-generated method stub
         super.onPause();
         System.out.println(" notification  onPause");
     }
 
     @Override
     protected void onStop() {
-        // TODO Auto-generated method stub
         super.onStop();
         isDestroy = false;
         System.out.println(" notification  onStop");
