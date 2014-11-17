@@ -39,17 +39,17 @@ public class DeviceHomePageActivity extends BaseActivity
     private TextView mKillButton;//杀菌按钮
     private TextView mLocationWeatherText;//显示aqi
     private Animation mRotateAnimation;//中间36-旋转动画
-    private View mRunProgress;
-    private TextView mRunTimeText;
+    private View mRunProgress;//进度条
+    private TextView mRunTimeText;//时间栏目里面的字体
     private TextView mhandButton;//手动
-    private View mTimeIconBgView;
+    private View mTimeIconBgView;//时间图标的背景色
     private View mTimeIconView;
-    private Animation mTimerAnimation;
-    private LinearLayout mTimerLayout;
-    private Animation mWindAnimation;
-    private View mWindIconView;
-    private LinearLayout mWindLayout;
-    private TextView mWindText;
+    private Animation mTimerAnimation;//时间动画
+    private LinearLayout mTimerLayout;//时间的布局
+    private Animation mWindAnimation;//风速动画
+    private View mWindIconView;//风量图标的view
+    private LinearLayout mWindLayout;//风量布局
+    private TextView mWindText;//风量字体
     private SharedPreferences storeSp;
     private TextView flz;// 负离子
     private TextView hepaText;// hepa
