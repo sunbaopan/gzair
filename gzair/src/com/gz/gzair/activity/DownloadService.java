@@ -31,6 +31,10 @@ public class DownloadService extends Service {
 	private int progress;
 	private NotificationManager mNotificationManager;
 	private boolean canceled;
+	// 返回的安装包url
+	//private String apkUrl = "http://softfile.3g.qq.com:8080/msoft/179/24659/43549/qq_hd_mini_1.4.apk";
+	//private static  String savePath = "/sdcard/updateApkDemo/";
+	//private static String saveFileName = savePath + "3GQQ_AppUpdate.apk";
 	private String apkUrl;
 	/* 下载包安装路径 */
 	private static  String savePath ;
@@ -88,6 +92,13 @@ public class DownloadService extends Service {
 			}
 		}
 	};
+
+	//
+	// @Override
+	// public int onStartCommand(Intent intent, int flags, int startId) {
+	// // TODO Auto-generated method stub
+	// return START_STICKY;
+	// }
 
 	@Override
 	public IBinder onBind(Intent intent) {
