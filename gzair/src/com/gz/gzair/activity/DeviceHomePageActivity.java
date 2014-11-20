@@ -30,35 +30,35 @@ import com.gz.gzair.view.BLWindAlert;
 @SuppressLint("HandlerLeak")
 public class DeviceHomePageActivity extends BaseActivity
 {
-    private TextView mAutoButton;//自动按钮
-    private LinearLayout mBackGround;//背景色
-    private Button mCloseButton;//关闭按钮
-    private TextView mEairRunStateText;//室内空气质量
-    private TextView mEairValueText;//好  良  优
-    private ImageView mErrorIconView;//警告错误图标   比如过滤网过去啥的
-    private TextView mKillButton;//杀菌按钮
-    private TextView mLocationWeatherText;//显示aqi
-    private Animation mRotateAnimation;//中间36-旋转动画
-    private View mRunProgress;//进度条
-    private TextView mRunTimeText;//时间栏目里面的字体
-    private TextView mhandButton;//手动
-    private View mTimeIconBgView;//时间图标的背景色
+    private TextView mAutoButton;// 自动按钮
+    private LinearLayout mBackGround;// 背景色
+    private Button mCloseButton;// 关闭按钮
+    private TextView mEairRunStateText;// 室内空气质量
+    private TextView mEairValueText;// 好 良 优
+    private ImageView mErrorIconView;// 警告错误图标 比如过滤网过去啥的
+    private TextView mKillButton;// 杀菌按钮
+    private TextView mLocationWeatherText;// 显示aqi
+    private Animation mRotateAnimation;// 中间36-旋转动画
+    private View mRunProgress;// 进度条
+    private TextView mRunTimeText;// 时间栏目里面的字体
+    private TextView mhandButton;// 手动
+    private View mTimeIconBgView;// 时间图标的背景色
     private View mTimeIconView;
-    private Animation mTimerAnimation;//时间动画
-    private LinearLayout mTimerLayout;//时间的布局
-    private Animation mWindAnimation;//风速动画
-    private View mWindIconView;//风量图标的view
-    private LinearLayout mWindLayout;//风量布局
-    private TextView mWindText;//风量字体
+    private Animation mTimerAnimation;// 时间动画
+    private LinearLayout mTimerLayout;// 时间的布局
+    private Animation mWindAnimation;// 风速动画
+    private View mWindIconView;// 风量图标的view
+    private LinearLayout mWindLayout;// 风量布局
+    private TextView mWindText;// 风量字体
     private SharedPreferences storeSp;
     private TextView flz;// 负离子
     private TextView hepaText;// hepa
     private TextView sleep;// 睡眠
     private int enivQu = 1;
-
-    private Time timer;
     
     private TextView mpmText;
+
+    private ImageView err_iconV;// 滤网警告信息
 
     // 风速档位
     private int fw = 1;
@@ -84,8 +84,8 @@ public class DeviceHomePageActivity extends BaseActivity
     private String sb;// 改用户下的所有设备列表
 
     private String userId;
-    
-    private  String  intranetAdress=null;//内网地址
+
+    private String intranetAdress = null;// 内网地址
 
     private void findView()
     {
@@ -109,7 +109,8 @@ public class DeviceHomePageActivity extends BaseActivity
         this.mhandButton = ((TextView) findViewById(R.id.btn_hand));
         this.mAutoButton = ((TextView) findViewById(R.id.btn_auto));
         this.mKillButton = ((TextView) findViewById(R.id.btn_kill));
-        this.mpmText=(TextView) findViewById(R.id.pm);
+        this.mpmText = (TextView) findViewById(R.id.pm);
+        this.err_iconV = (ImageView) findViewById(R.id.err_icon);
     }
 
     private void initEairView()
@@ -119,10 +120,10 @@ public class DeviceHomePageActivity extends BaseActivity
         this.mEairRunStateText.setText(R.string.room_air);
         this.mRunProgress.setVisibility(0);
         this.mEairValueText.setBackgroundDrawable(null);
-        if(pm==0){
+        if (pm == 0) {
             this.mpmText.setText("获取中....");
-        }else{
-            this.mpmText.setText("pm:"+pm);
+        } else {
+            this.mpmText.setText("pm:" + pm);
         }
         if ("A".equals(air)) {
             enivQu = 1;
@@ -217,11 +218,11 @@ public class DeviceHomePageActivity extends BaseActivity
             } else if (fw == 4) {
                 mWindText.setText(getString(R.string.format_wind, 4));
                 this.mWindAnimation.setDuration(10000L);
-            }else if (fw == 5) {
+            } else if (fw == 5) {
                 mWindText.setText(getString(R.string.format_wind, 5));
                 this.mWindAnimation.setDuration(10000L);
             }
-            
+
             if (this.mTimeIconView.getAnimation() == null)
                 this.mTimeIconView.startAnimation(this.mTimerAnimation);
             break;
@@ -245,16 +246,16 @@ public class DeviceHomePageActivity extends BaseActivity
         }
         if (uv == 0) {
             mKillButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.kill_s, 0, 0);
-        }else{
+        } else {
             mKillButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.kill_n, 0, 0);
         }
         if (anion == 0) {
             flz.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.flz_s, 0, 0);
-        }else{
+        } else {
             flz.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.flz_n, 0, 0);
         }
-        if (hepa == 0) {
-            hepaText.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hepa_s, 0, 0);
+        if (hepa == 1) {// 滤网时间到期了显示出警告图标
+            err_iconV.setVisibility(View.VISIBLE);
         }
 
     }
@@ -264,18 +265,7 @@ public class DeviceHomePageActivity extends BaseActivity
      */
     private void initWeatherView()
     {
-        //String weather = EairApplaction.todayWeather;
         String aqi = EairApplaction.aqi;
-        /*Object[] object = new Object[3];
-        object[0] = aqi;
-        if (weather != null&&weather.contains("~")) {
-            Object[] objectTem = weather.split("~");
-            object[1] = objectTem[0];
-            object[2] = objectTem[1];
-        } else {
-            object[1] = 0;
-            object[2] = 1;
-        }*/
         mLocationWeatherText.setText(getString(R.string.format_location_weather, aqi));
     }
 
@@ -310,28 +300,26 @@ public class DeviceHomePageActivity extends BaseActivity
         {
             public void onClick(View paramAnonymousView)
             {
-               
+
                 String mess = null;
-                if(intranetAdress==null){
+                if (intranetAdress == null) {
                     String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&poweron=1&userid="
                             + userId + "&cmd";
-                    mess=getRepMessage(cmd);
-                }else{
+                    mess = getRepMessage(cmd);
+                } else {
                     String cmd = "mac=" + phoneMac + "&set&poweron=1&userid="
                             + userId + "&cmd";
-                    mess=getNetRepMessage(intranetAdress,cmd);
+                    mess = getNetRepMessage(intranetAdress, cmd);
                 }
                 if ("timeout".equals(mess) || mess == null) {
-                    if(intranetAdress!=null){
-                        intranetAdress=null;
+                    if (intranetAdress != null) {
+                        intranetAdress = null;
                     }
                     tips();
                 } else if (mess.contains("door_open=1")) {
                     openTips();
                 } else {
-                    if(timer!=null){
-                        timer.cancel();
-                    }
+                    timeHandler.removeCallbacks(runnable);
                     Intent inte = new Intent(DeviceHomePageActivity.this, DeviceListActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("sb", sb);
@@ -348,26 +336,27 @@ public class DeviceHomePageActivity extends BaseActivity
             @Override
             public void onClick(View v) {
                 String phoneMac = storeSp.getString(Constant.PHONEMAC, "");
-             
+
                 String mess = null;
-                if(intranetAdress==null){
-                    String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&mode=0&userid=" + userId
+                if (intranetAdress == null) {
+                    String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&mode=0&userid="
+                            + userId
                             + "&cmd";
-                    mess=getRepMessage(cmd);
-                }else{
+                    mess = getRepMessage(cmd);
+                } else {
                     String cmd = "mac=" + phoneMac + "&set&mode=0&userid=" + userId
                             + "&cmd";
-                    mess=getNetRepMessage(intranetAdress,cmd);
+                    mess = getNetRepMessage(intranetAdress, cmd);
                 }
                 if ("timeout".equals(mess) || mess == null) {
-                    if(intranetAdress!=null){
-                        intranetAdress=null;
+                    if (intranetAdress != null) {
+                        intranetAdress = null;
                     }
                     tips();
                 } else if (mess.contains("door_open=1")) {
                     openTips();
                 } else {
-                    mode=0;
+                    mode = 0;
                     mhandButton.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.hand_s, 0,
                             0);
                     mAutoButton
@@ -383,27 +372,28 @@ public class DeviceHomePageActivity extends BaseActivity
             @Override
             public void onClick(View v) {
                 String mess = null;
-                if(intranetAdress==null){
-                    String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&mode=1&userid=" + userId
+                if (intranetAdress == null) {
+                    String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&mode=1&userid="
+                            + userId
                             + "&cmd";
-                    mess=getRepMessage(cmd);
-                }else{
-                    String cmd ="mac=" + phoneMac + "&set&mode=1&userid=" + userId
+                    mess = getRepMessage(cmd);
+                } else {
+                    String cmd = "mac=" + phoneMac + "&set&mode=1&userid=" + userId
                             + "&cmd";
-                    mess=getNetRepMessage(intranetAdress,cmd);
+                    mess = getNetRepMessage(intranetAdress, cmd);
                 }
                 if ("timeout".equals(mess) || mess == null) {
-                    if(intranetAdress!=null){
-                        intranetAdress=null;
+                    if (intranetAdress != null) {
+                        intranetAdress = null;
                     }
                     tips();
                 } else if (mess.contains("door_open=1")) {
                     openTips();
                 } else {
-                    mode=1;
-                    if(intranetAdress==null){
+                    mode = 1;
+                    if (intranetAdress == null) {
                         air = mess.split("&")[2].split("=")[1];// rep&success&air=x&end
-                    }else{
+                    } else {
                         air = mess.split("&")[3].split("=")[1];// rep&success&air=x&end
                     }
                     if ("A".equals(air)) {
@@ -440,20 +430,21 @@ public class DeviceHomePageActivity extends BaseActivity
             @Override
             public void onClick(View v) {
                 if (uv == 1) {
-                    
+
                     String mess = null;
-                    if(intranetAdress==null){
-                        String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&uv=0&userid=" + userId
+                    if (intranetAdress == null) {
+                        String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&uv=0&userid="
+                                + userId
                                 + "&cmd";
-                        mess=getRepMessage(cmd);
-                    }else{
+                        mess = getRepMessage(cmd);
+                    } else {
                         String cmd = "mac=" + phoneMac + "&set&uv=0&userid=" + userId
                                 + "&cmd";
-                        mess=getNetRepMessage(intranetAdress,cmd);
+                        mess = getNetRepMessage(intranetAdress, cmd);
                     }
                     if ("timeout".equals(mess) || mess == null) {
-                        if(intranetAdress!=null){
-                            intranetAdress=null;
+                        if (intranetAdress != null) {
+                            intranetAdress = null;
                         }
                         tips();
                     } else if (mess.contains("door_open=1")) {
@@ -464,20 +455,21 @@ public class DeviceHomePageActivity extends BaseActivity
                         uv = 0;
                     }
                 } else {
-                   
+
                     String mess = null;
-                    if(intranetAdress==null){
-                        String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&uv=1&userid=" + userId
+                    if (intranetAdress == null) {
+                        String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&uv=1&userid="
+                                + userId
                                 + "&cmd";
-                        mess=getRepMessage(cmd);
-                    }else{
-                        String cmd ="mac=" + phoneMac + "&set&uv=1&userid=" + userId
+                        mess = getRepMessage(cmd);
+                    } else {
+                        String cmd = "mac=" + phoneMac + "&set&uv=1&userid=" + userId
                                 + "&cmd";
-                        mess=getNetRepMessage(intranetAdress,cmd);
+                        mess = getNetRepMessage(intranetAdress, cmd);
                     }
                     if ("timeout".equals(mess) || mess == null) {
-                        if(intranetAdress!=null){
-                            intranetAdress=null;
+                        if (intranetAdress != null) {
+                            intranetAdress = null;
                         }
                         tips();
                     } else if (mess.contains("door_open=1")) {
@@ -496,20 +488,20 @@ public class DeviceHomePageActivity extends BaseActivity
             @Override
             public void onClick(View v) {
                 if (anion == 1) {
-                  
+
                     String mess = null;
-                    if(intranetAdress==null){
+                    if (intranetAdress == null) {
                         String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&anion=0&userid="
                                 + userId + "&cmd";
-                        mess=getRepMessage(cmd);
-                    }else{
+                        mess = getRepMessage(cmd);
+                    } else {
                         String cmd = "mac=" + phoneMac + "&set&anion=0&userid="
                                 + userId + "&cmd";
-                        mess=getNetRepMessage(intranetAdress,cmd);
+                        mess = getNetRepMessage(intranetAdress, cmd);
                     }
                     if ("timeout".equals(mess) || mess == null) {
-                        if(intranetAdress!=null){
-                            intranetAdress=null;
+                        if (intranetAdress != null) {
+                            intranetAdress = null;
                         }
                         tips();
                     } else if (mess.contains("door_open=1")) {
@@ -519,20 +511,20 @@ public class DeviceHomePageActivity extends BaseActivity
                         anion = 0;
                     }
                 } else {
-                    
+
                     String mess = null;
-                    if(intranetAdress==null){
+                    if (intranetAdress == null) {
                         String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&anion=1&userid="
                                 + userId + "&cmd";
-                        mess=getRepMessage(cmd);
-                    }else{
+                        mess = getRepMessage(cmd);
+                    } else {
                         String cmd = "mac=" + phoneMac + "&set&anion=1&userid="
                                 + userId + "&cmd";
-                        mess=getNetRepMessage(intranetAdress,cmd);
+                        mess = getNetRepMessage(intranetAdress, cmd);
                     }
                     if ("timeout".equals(mess) || mess == null) {
-                        if(intranetAdress!=null){
-                            intranetAdress=null;
+                        if (intranetAdress != null) {
+                            intranetAdress = null;
                         }
                         tips();
                     } else if (mess.contains("door_open=1")) {
@@ -546,36 +538,51 @@ public class DeviceHomePageActivity extends BaseActivity
             }
         });
         // hepa
-        /***
-         * this.hepaText.setOnClickListener(new View.OnClickListener() {
-         * 
-         * @Override public void onClick(View v) { } });
-         ****/
+        this.hepaText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//调到另一个activity中显示
+                    Intent  intent=new Intent(DeviceHomePageActivity.this,StrainerActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putString("userId", userId);
+                    bundle.putString("wlsn", wlsn);
+                    bundle.putString("mac", phoneMac);
+                    if(intranetAdress==null){
+                            bundle.putString("intranetAdress", "1");//不是内网就为1
+                    }else{
+                            bundle.putString("intranetAdress", intranetAdress);
+                    }
+                    intent.putExtras(bundle);
+                    timeHandler.removeCallbacks(runnable);
+                    DeviceHomePageActivity.this.startActivity(intent);
+            }
+        });
+
         // 睡眠
         this.sleep.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-             
+
                 String mess = null;
-                if(intranetAdress==null){
-                    String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&mode=2&userid=" + userId
+                if (intranetAdress == null) {
+                    String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&mode=2&userid="
+                            + userId
                             + "&cmd";
-                    mess=getRepMessage(cmd);
-                }else{
+                    mess = getRepMessage(cmd);
+                } else {
                     String cmd = "mac=" + phoneMac + "&set&mode=2&userid=" + userId
                             + "&cmd";
-                    mess=getNetRepMessage(intranetAdress,cmd);
+                    mess = getNetRepMessage(intranetAdress, cmd);
                 }
                 if ("timeout".equals(mess) || mess == null) {
-                    if(intranetAdress!=null){
-                        intranetAdress=null;
+                    if (intranetAdress != null) {
+                        intranetAdress = null;
                     }
                     tips();
                 } else if (mess.contains("door_open=1")) {
                     openTips();
                 } else {
-                    mode=2;
+                    mode = 2;
                     Editor windEd = storeSp.edit();
                     windEd.putInt(Constant.WINDDW, 1);
                     windEd.commit();
@@ -598,20 +605,20 @@ public class DeviceHomePageActivity extends BaseActivity
         BLTimeAlert.showAlert(this, time, 1, 8, new BLTimeAlert.OnAlertSelectId()
         {
             public void onClick(int paramAnonymousInt) {
-              
+
                 String mess = null;
-                if(intranetAdress==null){
+                if (intranetAdress == null) {
                     String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&timer="
                             + paramAnonymousInt + "&userid=" + userId + "&cmd";
-                    mess=getRepMessage(cmd);
-                }else{
+                    mess = getRepMessage(cmd);
+                } else {
                     String cmd = "mac=" + phoneMac + "&set&timer="
                             + paramAnonymousInt + "&userid=" + userId + "&cmd";
-                    mess=getNetRepMessage(intranetAdress,cmd);
+                    mess = getNetRepMessage(intranetAdress, cmd);
                 }
                 if ("timeout".equals(mess) || mess == null) {
-                    if(intranetAdress!=null){
-                        intranetAdress=null;
+                    if (intranetAdress != null) {
+                        intranetAdress = null;
                     }
                     tips();
                 } else if (mess.contains("door_open=1")) {
@@ -637,18 +644,18 @@ public class DeviceHomePageActivity extends BaseActivity
             {
                 Log.i(">>>>>>>>>>>", String.valueOf(paramAnonymousInt));
                 String mess = null;
-                if(intranetAdress==null){
+                if (intranetAdress == null) {
                     String cmd = "wlsn=" + wlsn + "&mac=" + phoneMac + "&set&speed="
                             + paramAnonymousInt + "&userid=" + userId + "&cmd";
-                    mess=getRepMessage(cmd);
-                }else{
+                    mess = getRepMessage(cmd);
+                } else {
                     String cmd = "mac=" + phoneMac + "&set&speed="
                             + paramAnonymousInt + "&userid=" + userId + "&cmd";
-                    mess=getNetRepMessage(intranetAdress,cmd);
+                    mess = getNetRepMessage(intranetAdress, cmd);
                 }
                 if ("timeout".equals(mess) || mess == null) {
-                    if(intranetAdress!=null){
-                        intranetAdress=null;
+                    if (intranetAdress != null) {
+                        intranetAdress = null;
                     }
                     tips();
                 } else if (mess.contains("door_open=1")) {
@@ -692,19 +699,19 @@ public class DeviceHomePageActivity extends BaseActivity
         uv = storeSp.getInt(Constant.UV, 1);
         anion = storeSp.getInt(Constant.ANION, 1);
         hepa = storeSp.getInt(Constant.HEPA, 1);
-        pm= storeSp.getInt(Constant.PM, 1);
-        //添加一个判断是否在内网
-        WebServiceUtil ws=new WebServiceUtil();
-        String result=ws.areaNetWork(wlsn, phoneMac, userId);
-        if(!"not".equals(result)){//手机和设备在同一个内网
-           intranetAdress=result;
-       }
+        pm = storeSp.getInt(Constant.PM, 1);
+        // 添加一个判断是否在内网
+        WebServiceUtil ws = new WebServiceUtil();
+        String result = ws.areaNetWork(wlsn, phoneMac, userId);
+        if (!"not".equals(result)) {// 手机和设备在同一个内网
+            intranetAdress = result;
+        }
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if (keyCode == KeyEvent.KEYCODE_BACK) { // 点击返回就退出应用
-             this.finish();
+            this.finish();
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -714,11 +721,7 @@ public class DeviceHomePageActivity extends BaseActivity
         super.onPause();
         this.mRunProgress.setVisibility(4);
         this.mRunProgress.clearAnimation();
-        if (this.timer != null)
-        {
-            this.timer.cancel();
-            this.timer = null;
-        }
+        timeHandler.removeCallbacks(runnable);
     }
 
     protected void onResume()
@@ -728,46 +731,40 @@ public class DeviceHomePageActivity extends BaseActivity
         initEairView();
         this.mWindIconView.startAnimation(this.mWindAnimation);
         this.mRunProgress.startAnimation(this.mRotateAnimation);
-        if (this.timer == null) {
-            this.timer = new Time();
-            timer.test();// //启动定时器任务
-        }
+        timeHandler.postDelayed(runnable, timestop);  
     }
-
-    public class Time extends TimerTask {
-        private Timer timer = null;// 开始要将timer对象赋初值null
-        private long timestop = 20000;// 每隔20秒执行一次任务
-
-        public Time() {
-            timer = new Timer();
-            System.out.println("java定时器测试");
-        }// 构造函数
-
-        public void test()
-        {
-            Time t = new Time();
-            Date date = new Date();
-            timer.schedule(t, date, timestop);
-        }// 真正启动任务的函数，当在main函数中new一个新对象时，调用此函数，在此函数中有schedule方法，启动任务。
-
-        @Override
-        public void run() {
-            getInitData();
-            air = storeSp.getString(Constant.AIR, "A");
-            fw = storeSp.getInt(Constant.WINDDW, 1);
-            time = storeSp.getInt(Constant.TIME, 0);
-            mode = storeSp.getInt(Constant.MODE, 1);
-            uv = storeSp.getInt(Constant.UV, 1);
-            anion = storeSp.getInt(Constant.ANION, 1);
-            hepa = storeSp.getInt(Constant.HEPA, 1);
-            pm= storeSp.getInt(Constant.PM, 1);
-            Message msg = new Message();
-            msg.what = 1;
-            handle.sendMessage(msg);
-
-        }
-
-    }
+    
+    Handler timeHandler = new Handler(); 
+    
+    private long timestop = 20000;// 每隔20秒执行一次任务
+    
+    Runnable runnable = new Runnable() {  
+        
+        @Override  
+        public void run() {  
+            // handler自带方法实现定时器  
+            try {  
+                timeHandler.postDelayed(this, timestop);  
+                System.out.println("java定时器测试");
+                getInitData();
+                air = storeSp.getString(Constant.AIR, "A");
+                fw = storeSp.getInt(Constant.WINDDW, 1);
+                time = storeSp.getInt(Constant.TIME, 0);
+                mode = storeSp.getInt(Constant.MODE, 1);
+                uv = storeSp.getInt(Constant.UV, 1);
+                anion = storeSp.getInt(Constant.ANION, 1);
+                hepa = storeSp.getInt(Constant.HEPA, 1);
+                pm = storeSp.getInt(Constant.PM, 1);
+                Message msg = new Message();
+                msg.what = 1;
+                handle.sendMessage(msg);
+            } catch (Exception e) {  
+                // TODO Auto-generated catch block  
+                e.printStackTrace();  
+                System.out.println("exception...");  
+            }  
+        }  
+    };  
 
     /***
      * 根据空气环境质量修改页面显示的
@@ -816,8 +813,8 @@ public class DeviceHomePageActivity extends BaseActivity
      */
     private void storeData(String message) {// rep&timer=0&speed=3&pmx=15&air=A&mode=1&uv=1&anion=1&hepa=1&end
         Editor editor = storeSp.edit();
-        String[] mess=message.split("&");
-        if(mess.length==10){
+        String[] mess = message.split("&");
+        if (mess.length == 10) {
             editor.putInt(Constant.TIME, Integer.parseInt(mess[1].split("=")[1]));
             editor.putInt(Constant.WINDDW, Integer.parseInt(mess[2].split("=")[1]));
             editor.putInt(Constant.PM, Integer.parseInt(mess[3].split("=")[1]));
@@ -825,7 +822,7 @@ public class DeviceHomePageActivity extends BaseActivity
             editor.putInt(Constant.MODE, Integer.parseInt(mess[5].split("=")[1]));
             editor.putInt(Constant.UV, Integer.parseInt(mess[6].split("=")[1]));
             editor.putInt(Constant.ANION, Integer.parseInt(mess[7].split("=")[1]));
-            editor.putInt(Constant.HEPA,Integer.parseInt( mess[8].split("=")[1]));
+            editor.putInt(Constant.HEPA, Integer.parseInt(mess[8].split("=")[1]));
             editor.commit();
         }
     }

@@ -139,6 +139,8 @@
     <string name="uploading">上传中...</string>
     <string name="confim_upload">确认上传</string>
     <string name="sernumber">机身编码:</string>
+    <string name="strainersy">滤网使用时间:</string>
+    <string name="strainertotal">滤网总时间:</string>
     <string name="input_sernumber">请手动输入</string>
     <string name="device_name">设备名称:</string>
     <string name="call_server"></string>
@@ -149,6 +151,7 @@
     <string name="notsb2">检查设备是否联网（可能添加设备时wifi密码不正确导致）</string>
     <string name="netException">操作超时，请稍后再试</string>
     <string name="dooropen">空气净化器门打开了，关闭后重试</string>
+    <string name="datafail">获取数据失败稍后再试</string>
     <string name="passwordfail">输入密码不正确，检查后重新输入</string>
     <string name="notwifi">初次使用，选择wifi联网</string>
     <string name="configDevice">开始配置需要用wifi联网</string>
@@ -220,4 +223,5 @@
   <string name="preferences_try_bsplus">尝试条码扫描器+</string>
   <string name="preferences_try_bsplus_summary">增强新的功能和接口</string>
   <string name="preferences_vibrate_title">振动</string>
+  <string name="loadData">正在加载数据，请稍后</string>
 </resources>
