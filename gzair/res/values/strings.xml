@@ -148,6 +148,7 @@
     <string name="netError">请检查网络或者设备配置，稍后再试</string>
     <string name="handlelj">需要手动连接%1$热点</string>
     <string name="notsb1">设备还没有注册到服务器，稍后再试</string>
+    <string name="delfail">删除失败，稍后再试</string>
     <string name="notsb2">检查设备是否联网（可能添加设备时wifi密码不正确导致）</string>
     <string name="netException">操作超时，请稍后再试</string>
     <string name="dooropen">空气净化器门打开了，关闭后重试</string>

@@ -53,6 +53,38 @@ public class WebServiceUtil {
     
     private static String ADDIP__SOAP_ACTION=NAMESPACE + ADD_IP_NAME;
     
+    private static  final String DELETE_IP_NAME="deleteIP";
+    
+    private static String DELETE_IP__SOAP_ACTION=NAMESPACE + DELETE_IP_NAME;
+    
+    
+    /***
+     * 删除某一个用户下面的设备
+     * @param wlsn
+     * @param userid
+     * @return
+     */
+    public String deleteIP(String wlsn,String userid) {
+        String ss = null;
+        try {
+            SoapObject rpc = new SoapObject(NAMESPACE, DELETE_IP_NAME);
+            rpc.addProperty("wlsn", wlsn);
+            rpc.addProperty("userid", userid);
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                    SoapEnvelope.VER10);
+            envelope.bodyOut = rpc;
+            // envelope.dotNet = true;
+            envelope.setOutputSoapObject(rpc);
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.debug = true;
+            ht.call(DELETE_IP__SOAP_ACTION, envelope);
+            ss = envelope.getResponse().toString();
+        } catch (Exception e) {
+            return null;
+        }
+        return ss;
+    }
+    
     
     /***
      * 在添加设备的时候根据设备序列号和userid来判断是否需要添加
