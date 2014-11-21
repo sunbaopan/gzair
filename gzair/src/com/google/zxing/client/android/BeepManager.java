@@ -39,16 +39,12 @@ import com.gz.gzair.R;
 final class BeepManager implements MediaPlayer.OnCompletionListener, MediaPlayer.OnErrorListener {
 
   private static final String TAG = BeepManager.class.getSimpleName();
-  // ����
   private static final float BEEP_VOLUME = 0.10f;
-  // ��ʱ��
   private static final long VIBRATE_DURATION = 200L;
-
   private final Activity activity;
   private MediaPlayer mediaPlayer;
   private boolean playBeep;
   private boolean vibrate;
-
   BeepManager(Activity activity) {
     this.activity = activity;
     this.mediaPlayer = null;
