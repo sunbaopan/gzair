@@ -19,7 +19,7 @@ public class WebServiceUtil {
     // WebServiceµÿ÷∑
     private static String URL = "http://60.173.247.120:82/yitoawl/webservices/reservationService?wsdl";
     
-    //private static String URL = "http://192.168.30.226:145/yitoawl/webservices/reservationService?wsdl";
+    //private static String URL = "http://60.173.247.120:145/yitoawl/webservices/reservationService?wsdl";
     
     private static final String METHOD_NAME = "getNetIp";
 

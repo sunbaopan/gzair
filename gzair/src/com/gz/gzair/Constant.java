@@ -23,8 +23,8 @@ public class Constant {
     public static String HEPA="hepa";//hepa
     
     public static String IPADDRESS = "60.173.247.120";// 服务端的ip地址
-   
     public static int WPORT = 83;//服务端端口
+    //public static int WPORT = 85;//服务端端口
     
     public static int WAITTIME=20;//等待时间为12/2=6秒
     
