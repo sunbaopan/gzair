@@ -40,4 +40,9 @@ public class Constant {
     
     public  static String WIFIACCOUNT="wifizh";//可用的wifi账户
     
+    //推送的信息
+    public  static  String  TITLE="title";//显示标题de
+   
+    public  static String  CONTENT="content";//显示内容的
+    
 }

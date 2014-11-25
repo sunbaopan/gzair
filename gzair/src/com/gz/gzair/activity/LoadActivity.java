@@ -15,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 import com.gz.gzair.Constant;
 import com.gz.gzair.EairApplaction;
@@ -22,6 +23,10 @@ import com.gz.gzair.R;
 import com.gz.gzair.activity.DownloadService.DownloadBinder;
 import com.gz.gzair.util.Util;
 import com.gz.gzair.util.WebServiceUtil;
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushConfig;
+import com.tencent.android.tpush.XGPushManager;
+import com.tencent.android.tpush.common.Constants;
 public class LoadActivity extends BaseActivity  {
 
     private SharedPreferences storeSP;
@@ -42,10 +47,14 @@ public class LoadActivity extends BaseActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_layout);
-        EairApplaction.getInstance().addActivity(this);
+        //EairApplaction.getInstance().addActivity(this);
         app = (EairApplaction) getApplication();
         storeSP = this.getSharedPreferences(Constant.STOREDB, 0);
         mac = storeSP.getString(Constant.PHONEMAC, "");
+        //设置推送的关闭debug模式
+        XGPushConfig.enableDebug(this,false);
+        // 注册推送接口
+        XGPushManager.registerPush(getApplicationContext());
         PackageInfo info;
         // 检查网络是否有问题
         boolean isExistNet = Util.isNetworkConnected(this);
