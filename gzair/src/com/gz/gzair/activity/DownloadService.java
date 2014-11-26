@@ -201,7 +201,6 @@ public class DownloadService extends Service {
 		CharSequence tickerText = "开始下载";
 		long when = System.currentTimeMillis();
 		mNotification = new Notification(icon, tickerText, when);
-		;
 		// 放置在"正在运行"栏目中
 		mNotification.flags = Notification.FLAG_ONGOING_EVENT;
 

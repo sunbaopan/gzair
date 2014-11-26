@@ -1,7 +1,5 @@
 
 package com.gz.gzair.activity;
-
-import java.util.List;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -15,7 +13,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.Log;
 import android.widget.Toast;
 import com.gz.gzair.Constant;
 import com.gz.gzair.EairApplaction;
@@ -23,10 +20,8 @@ import com.gz.gzair.R;
 import com.gz.gzair.activity.DownloadService.DownloadBinder;
 import com.gz.gzair.util.Util;
 import com.gz.gzair.util.WebServiceUtil;
-import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
-import com.tencent.android.tpush.common.Constants;
 public class LoadActivity extends BaseActivity  {
 
     private SharedPreferences storeSP;
