@@ -22,6 +22,9 @@ import com.gz.gzair.util.Util;
 import com.gz.gzair.util.WebServiceUtil;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
+import com.tencent.android.tpush.XGPushNotificationBuilder;
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.service.XGPushService;
 public class LoadActivity extends BaseActivity  {
 
     private SharedPreferences storeSP;
@@ -49,7 +52,19 @@ public class LoadActivity extends BaseActivity  {
         //设置推送的关闭debug模式
         XGPushConfig.enableDebug(this,false);
         // 注册推送接口
-        XGPushManager.registerPush(getApplicationContext());
+        XGPushManager.registerPush(getApplicationContext(),new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object data, int flag) {
+          
+            }
+            //注册失败需要重启service
+            @Override
+            public void onFail(Object data, int errCode, String msg) {
+               Context  context=getApplicationContext();
+               Intent  intent=new Intent(context,XGPushService.class);
+               context.startService(intent);
+            }
+        });
         PackageInfo info;
         // 检查网络是否有问题
         boolean isExistNet = Util.isNetworkConnected(this);
