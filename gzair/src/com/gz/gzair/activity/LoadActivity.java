@@ -22,7 +22,6 @@ import com.gz.gzair.util.Util;
 import com.gz.gzair.util.WebServiceUtil;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
-import com.tencent.android.tpush.XGPushNotificationBuilder;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.service.XGPushService;
 public class LoadActivity extends BaseActivity  {
