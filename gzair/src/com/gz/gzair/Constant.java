@@ -8,7 +8,6 @@ public class Constant {
     
     public  static String TIME="time";//定时
     
-    
     public  static String PHONEMAC="phonemac";//手机mac地址
     
     public static String PM="pm";//pm
