@@ -45,6 +45,7 @@ public class ConfigActivity extends BaseActivity implements OnClickListener {
     private WifiUtils mWifiManager;
 
     private LinearLayout config_layout;
+    
 
     private String userId;
 
