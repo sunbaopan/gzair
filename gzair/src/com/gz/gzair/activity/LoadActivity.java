@@ -71,7 +71,6 @@ public class LoadActivity extends BaseActivity  {
             loadTips();
             return;
         }
-
         try {
             PackageManager manager = LoadActivity.this.getPackageManager();
             info = manager.getPackageInfo(LoadActivity.this.getPackageName(), 0);
